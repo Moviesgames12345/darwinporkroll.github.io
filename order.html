@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <script defer src="https://unpkg.com/lucide@latest"></script>
   <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/order.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800" style="font-family: 'Inter', sans-serif;">
   <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="main-nav" aria-label="Primary navigation">
@@ -55,24 +56,80 @@
     </div>
   </nav>
 
-  <main class="pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="order-heading">
-    <h1 id="order-heading" class="text-4xl font-extrabold text-gray-900 mb-8">Order Online</h1>
-    <p class="text-lg text-gray-600 mb-8">Online ordering integration placeholder. This page will soon allow you to select items, customize, and schedule pickup times.</p>
-    <div class="grid gap-8 md:grid-cols-2">
-      <section class="p-6 bg-white rounded-xl shadow-md" aria-labelledby="popular-items">
-        <h2 id="popular-items" class="text-2xl font-bold mb-4">Popular Items</h2>
-        <ul class="space-y-3 text-gray-700">
-          <li>Banh Mi - Crispy Roast Pork</li>
-          <li>Beef Pho (Large)</li>
-          <li>Grilled Pork Chop Rice</li>
-          <li>Vietnamese Iced Coffee</li>
-        </ul>
+  <main class="pt-24 pb-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="order-heading">
+    <div class="flex items-baseline justify-between mb-6">
+      <h1 id="order-heading" class="text-3xl md:text-4xl font-extrabold text-gray-900">Order Online</h1>
+      <p class="text-sm text-gray-500">Pickup only • Prices in AUD</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Menu -->
+      <section class="lg:col-span-2 space-y-8" aria-labelledby="menu-heading">
+        <div>
+          <h2 id="menu-heading" class="text-xl font-bold text-gray-900 mb-4">Menu</h2>
+          <div id="menu-list" class="grid sm:grid-cols-2 gap-4">
+            <!-- Items rendered by JS -->
+          </div>
+        </div>
       </section>
-      <section class="p-6 bg-white rounded-xl shadow-md" aria-labelledby="coming-soon">
-        <h2 id="coming-soon" class="text-2xl font-bold mb-4">Coming Soon</h2>
-        <p class="text-gray-600">Full ordering cart, payment integration, and real-time pickup availability.</p>
-        <p class="mt-4 text-sm text-gray-500">Interested? <a href="mailto:info@example.com" class="text-red-600 hover:underline">Contact us</a> for catering pre-orders.</p>
-      </section>
+
+      <!-- Cart / Checkout -->
+      <aside class="space-y-4" aria-labelledby="cart-heading">
+        <div class="bg-white rounded-xl shadow-md p-4">
+          <h2 id="cart-heading" class="text-lg font-bold text-gray-900">Your Order</h2>
+          <div id="cart-empty" class="text-gray-500 text-sm py-6">Your cart is empty. Add some delicious items!</div>
+          <ul id="cart-items" class="divide-y divide-gray-100 hidden"></ul>
+          <div id="cart-summary" class="pt-4 hidden">
+            <div class="flex justify-between text-sm text-gray-600 mb-1">
+              <span>Subtotal</span><span id="subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600 mb-3">
+              <span>Estimated GST (10%)</span><span id="gst">$0.00</span>
+            </div>
+            <div class="flex justify-between text-lg font-bold text-gray-900">
+              <span>Total</span><span id="total">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="checkout-form" class="bg-white rounded-xl shadow-md p-4 space-y-3" aria-labelledby="details-heading">
+          <h3 id="details-heading" class="text-lg font-bold text-gray-900">Pickup Details</h3>
+          <label class="block">
+            <span class="text-sm text-gray-700">Name</span>
+            <input id="cust-name" type="text" class="mt-1 w-full rounded-md border-gray-300 focus:ring-0 focus:border-gray-900" placeholder="Your name" required />
+          </label>
+          <label class="block">
+            <span class="text-sm text-gray-700">Mobile</span>
+            <input id="cust-phone" type="tel" class="mt-1 w-full rounded-md border-gray-300 focus:ring-0 focus:border-gray-900" placeholder="04xx xxx xxx" required />
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="block">
+              <span class="text-sm text-gray-700">Pickup Date</span>
+              <input id="pickup-date" type="date" class="mt-1 w-full rounded-md border-gray-300 focus:ring-0 focus:border-gray-900" />
+            </label>
+            <label class="block">
+              <span class="text-sm text-gray-700">Pickup Time</span>
+              <input id="pickup-time" type="time" class="mt-1 w-full rounded-md border-gray-300 focus:ring-0 focus:border-gray-900" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm text-gray-700">Notes</span>
+            <textarea id="cust-notes" rows="3" class="mt-1 w-full rounded-md border-gray-300 focus:ring-0 focus:border-gray-900" placeholder="Allergies, no chili, extra coriander, etc."></textarea>
+          </label>
+
+          <div class="pt-2 grid grid-cols-2 gap-3">
+            <a id="btn-sms" class="btn-primary flex items-center justify-center cursor-pointer select-none" href="#" target="_blank" rel="noopener">
+              <i data-lucide="message-square" class="w-4 h-4 mr-2"></i> SMS Order
+            </a>
+            <a id="btn-wa" class="btn-outline-red flex items-center justify-center cursor-pointer select-none" href="#" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i> WhatsApp
+            </a>
+            <button id="btn-copy" type="button" class="btn-outline-lg col-span-2">Copy Order Summary</button>
+            <button id="btn-print" type="button" class="btn-outline-lg col-span-2">Print Order</button>
+          </div>
+          <p class="text-xs text-gray-500">We’ll confirm availability and pickup time when we receive your message.</p>
+        </form>
+      </aside>
     </div>
   </main>
 
