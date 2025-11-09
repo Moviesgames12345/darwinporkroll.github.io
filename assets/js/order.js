@@ -27,12 +27,47 @@
     btnWa: document.getElementById('btn-wa'),
     btnCopy: document.getElementById('btn-copy'),
     btnPrint: document.getElementById('btn-print'),
+    // options modal
+    optOverlay: document.getElementById('opt-overlay'),
+    optModal: document.getElementById('opt-modal'),
+    optForm: document.getElementById('opt-form'),
+    optList: document.getElementById('opt-list'),
+    optTitle: document.getElementById('opt-title'),
+    optSub: document.getElementById('opt-sub'),
+    optPrice: document.getElementById('opt-price'),
+    optCancel: document.getElementById('opt-cancel'),
+    optClose: document.getElementById('opt-close'),
   };
 
   const BUSINESS_MOBILE = '0473027083'; // AU mobile; shown on contact page
   const BUSINESS_MOBILE_INTL = '61473027083'; // for WhatsApp wa.me links
 
+  const OPTIONS = {
+    'Banh Mi': [
+      {id:'no-chili', label:'No chili', delta:0},
+      {id:'no-coriander', label:'No coriander', delta:0},
+      {id:'extra-pate', label:'Extra pâté (+$1)', delta:1},
+      {id:'extra-meat', label:'Extra meat (+$2)', delta:2},
+    ],
+    'Pho': [
+      {id:'no-onion', label:'No onion', delta:0},
+      {id:'extra-beef', label:'Extra beef (+$3)', delta:3},
+      {id:'extra-noodles', label:'Extra noodles (+$2)', delta:2},
+      {id:'add-chili-oil', label:'Add chili oil', delta:0},
+    ],
+    'Rice': [
+      {id:'fried-egg', label:'Add fried egg (+$2)', delta:2},
+      {id:'extra-pork', label:'Extra pork (+$3)', delta:3},
+      {id:'no-fish-sauce', label:'No fish sauce', delta:0},
+    ],
+    'Drink':[ 
+      {id:'less-ice', label:'Less ice', delta:0},
+      {id:'extra-shot', label:'Extra shot (+$1)', delta:1},
+    ]
+  };
+
   let cart = loadCart();
+  let currentItem = null; // item being customized
 
   function formatCurrency(n){
     try { return new Intl.NumberFormat('en-AU', {style:'currency', currency:'AUD'}).format(n); }
@@ -74,12 +109,67 @@
       const id = btn.getAttribute('data-add');
       const itm = MENU.find(x=>x.id===id);
       if(!itm) return;
-      const existing = cart[id] || {id: itm.id, name: itm.name, price: itm.price, qty:0};
-      existing.qty += 1;
-      cart[id] = existing;
-      saveCart();
-      renderCart();
+      openCustomize(itm);
     });
+  }
+
+  function openCustomize(item){
+    currentItem = item;
+    if(!els.optModal || !els.optOverlay) {
+      // fallback: add directly if modal missing
+      addToCart(item, []);
+      return;
+    }
+    els.optTitle.textContent = item.name;
+    els.optSub.textContent = item.cat || '';
+    const opts = OPTIONS[item.cat] || [];
+    els.optList.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    opts.forEach(o=>{
+      const id = `opt-${o.id}`;
+      const label = document.createElement('label');
+      label.className = 'flex items-center gap-3 p-2 rounded-md border border-gray-200 hover:border-gray-300';
+      label.innerHTML = `<input type="checkbox" class="h-4 w-4" value="${o.id}" data-delta="${o.delta}"><span class="text-sm text-gray-800">${o.label}</span>`;
+      frag.appendChild(label);
+    });
+    els.optList.appendChild(frag);
+    updateOptPrice();
+    showModal(true);
+  }
+
+  function showModal(show){
+    [els.optOverlay, els.optModal].forEach(el=>{ if(!el) return; el.classList.toggle('hidden', !show); });
+  }
+
+  function getSelectedOptions(){
+    const cbs = els.optList ? els.optList.querySelectorAll('input[type="checkbox"]') : [];
+    const selected = [];
+    cbs.forEach(cb=>{ if(cb.checked){ selected.push({id: cb.value, label: cb.parentElement.querySelector('span').textContent, delta: +cb.dataset.delta}); } });
+    return selected;
+  }
+
+  function calcUnitPrice(base, opts){
+    const extra = opts.reduce((s,o)=> s + (o.delta||0), 0);
+    return +(base + extra).toFixed(2);
+  }
+
+  function updateOptPrice(){
+    if(!currentItem || !els.optPrice) return;
+    const opts = getSelectedOptions();
+    const unit = calcUnitPrice(currentItem.price, opts);
+    els.optPrice.textContent = formatCurrency(unit);
+  }
+
+  function addToCart(item, opts){
+    const key = item.id + '|' + opts.map(o=>o.id).sort().join(',');
+    const unit = calcUnitPrice(item.price, opts);
+    const row = cart[key] || { id: key, baseId: item.id, name: item.name, price: unit, basePrice: item.price, opts: opts, qty: 0 };
+    row.price = unit; // in case options changed
+    row.opts = opts;
+    row.qty += 1;
+    cart[key] = row;
+    saveCart();
+    renderCart();
   }
 
   function computeTotals(){
@@ -107,9 +197,11 @@
     items.forEach(row => {
       const li = document.createElement('li');
       li.className = 'py-3 flex items-center justify-between';
+      const optText = (row.opts && row.opts.length) ? row.opts.map(o=>o.label).join('; ') : '';
       li.innerHTML = `
         <div>
           <div class="font-medium text-gray-900">${row.name}</div>
+          ${optText ? `<div class="text-xs text-gray-500">${optText}</div>` : ''}
           <div class="text-sm text-gray-600">${formatCurrency(row.price)} ea</div>
         </div>
         <div class="flex items-center gap-2">
@@ -157,7 +249,10 @@
     const lines = [];
     lines.push('Darwin Pork Roll Order');
     lines.push('');
-    items.forEach(x=> lines.push(`• ${x.name} x ${x.qty} — ${formatCurrency(x.price*x.qty)}`));
+    items.forEach(x=> {
+      lines.push(`• ${x.name} x ${x.qty} — ${formatCurrency(x.price*x.qty)}`);
+      if(x.opts && x.opts.length){ lines.push('   - ' + x.opts.map(o=>o.label).join('; ')); }
+    });
     lines.push('');
     lines.push(`Subtotal: ${formatCurrency(subtotal)}`);
     lines.push(`GST (10%): ${formatCurrency(gst)}`);
@@ -230,6 +325,25 @@
     if(els.date && !els.date.value) els.date.value = `${yyyy}-${mm}-${dd}`;
     const in30 = new Date(now.getTime()+30*60*1000);
     if(els.time && !els.time.value) els.time.value = `${pad(in30.getHours())}:${pad(in30.getMinutes())}`;
+  }
+
+  // Modal events
+  document.addEventListener('change', function(e){
+    if(e.target && e.target.closest && e.target.closest('#opt-list')){
+      updateOptPrice();
+    }
+  });
+  if(els.optCancel) els.optCancel.addEventListener('click', ()=> showModal(false));
+  if(els.optClose) els.optClose.addEventListener('click', ()=> showModal(false));
+  if(els.optOverlay) els.optOverlay.addEventListener('click', ()=> showModal(false));
+  if(els.optForm){
+    els.optForm.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!currentItem) return;
+      const opts = getSelectedOptions();
+      addToCart(currentItem, opts);
+      showModal(false);
+    });
   }
 
   function ready(fn){ if(document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
