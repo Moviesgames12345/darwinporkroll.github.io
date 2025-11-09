@@ -21,8 +21,18 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Tailwind CDN fallback; local build recommended for production -->
-    <script src="https://cdn.tailwindcss.com" crossorigin></script>
-    <link rel="preload" href="assets/css/main.css" as="style" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'inter': ['Inter', 'system-ui', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <script defer src="https://unpkg.com/lucide@latest"></script>
     <script defer src="assets/js/main.js"></script>
@@ -43,7 +53,7 @@
       ]
     }</script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-inter">
+<body class="bg-gray-50 text-gray-800" style="font-family: 'Inter', sans-serif;">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="main-nav" aria-label="Primary navigation">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
