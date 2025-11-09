@@ -15,6 +15,7 @@
     cartEmpty: document.getElementById('cart-empty'),
     cartItems: document.getElementById('cart-items'),
     cartSummary: document.getElementById('cart-summary'),
+    stickyBar: null,
     subtotal: document.getElementById('subtotal'),
     gst: document.getElementById('gst'),
     total: document.getElementById('total'),
@@ -222,6 +223,7 @@
 
     const disabled = items.length === 0;
     toggleCtas(disabled);
+    updateStickyBar();
   }
 
   function toggleCtas(disable){
@@ -354,5 +356,39 @@
     attachCtas();
     initDefaults();
     updateLinks();
+    initStickyBar();
   });
+
+  // Sticky mobile cart bar
+  function initStickyBar(){
+    if(window.matchMedia('(min-width: 1024px)').matches) return; // mobile only
+    if(document.getElementById('sticky-cart-bar')) return;
+    const bar = document.createElement('button');
+    bar.id = 'sticky-cart-bar';
+    bar.type = 'button';
+    bar.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-yellow-500 text-gray-900 font-semibold px-5 py-3 rounded-full shadow-lg flex items-center gap-2 transition-opacity duration-300 opacity-0 pointer-events-none';
+    bar.setAttribute('aria-live','polite');
+    bar.innerHTML = '<span class="cart-count">0</span> • <span class="cart-total">$0.00</span> <span class="sr-only">View cart</span>';
+    bar.addEventListener('click', function(){
+      const cartHeading = document.getElementById('cart-heading');
+      if(cartHeading){ cartHeading.scrollIntoView({behavior:'smooth'}); }
+    });
+    document.body.appendChild(bar);
+    els.stickyBar = bar;
+    updateStickyBar();
+  }
+
+  function updateStickyBar(){
+    if(!els.stickyBar) return;
+    const items = Object.values(cart).filter(x=>x.qty>0);
+    if(items.length === 0){
+      els.stickyBar.classList.add('opacity-0','pointer-events-none');
+      return;
+    }
+    const count = items.reduce((s,i)=> s + i.qty, 0);
+    const { total } = computeTotals();
+    els.stickyBar.querySelector('.cart-count').textContent = count + ' item' + (count===1?'':'s');
+    els.stickyBar.querySelector('.cart-total').textContent = formatCurrency(total);
+    els.stickyBar.classList.remove('opacity-0','pointer-events-none');
+  }
 })();
