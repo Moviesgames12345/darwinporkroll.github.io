@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Online - Darwin Pork Roll</title>
+  <meta name="description" content="Order Vietnamese Banh Mi, Pho, and rice dishes online for quick pickup at Darwin Pork Roll." />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com" crossorigin></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-inter">
+  <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="main-nav" aria-label="Primary navigation">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/index.html" class="font-bold text-xl text-gray-900 flex items-center" aria-label="Darwin Pork Roll Home">
+            <span class="text-yellow-500 mr-1">Darwin</span> Pork Roll
+          </a>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/index.html#menu" class="nav-link">Menu</a>
+          <a href="/index.html#about" class="nav-link">About Us</a>
+          <a href="/index.html#contact" class="nav-link">Find Us</a>
+          <a href="#" class="btn-primary flex items-center" aria-label="Order Online">
+            <i data-lucide="shopping-bag" class="w-4 h-4 mr-2" aria-hidden="true"></i>
+            Order Online
+          </a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" type="button" class="icon-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden" aria-hidden="true">
+      <a href="/index.html#menu" class="mobile-link">Menu</a>
+      <a href="/index.html#about" class="mobile-link">About Us</a>
+      <a href="/index.html#contact" class="mobile-link">Find Us</a>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="order-heading">
+    <h1 id="order-heading" class="text-4xl font-extrabold text-gray-900 mb-8">Order Online</h1>
+    <p class="text-lg text-gray-600 mb-8">Online ordering integration placeholder. This page will soon allow you to select items, customize, and schedule pickup times.</p>
+    <div class="grid gap-8 md:grid-cols-2">
+      <section class="p-6 bg-white rounded-xl shadow-md" aria-labelledby="popular-items">
+        <h2 id="popular-items" class="text-2xl font-bold mb-4">Popular Items</h2>
+        <ul class="space-y-3 text-gray-700">
+          <li>Banh Mi - Crispy Roast Pork</li>
+          <li>Beef Pho (Large)</li>
+          <li>Grilled Pork Chop Rice</li>
+          <li>Vietnamese Iced Coffee</li>
+        </ul>
+      </section>
+      <section class="p-6 bg-white rounded-xl shadow-md" aria-labelledby="coming-soon">
+        <h2 id="coming-soon" class="text-2xl font-bold mb-4">Coming Soon</h2>
+        <p class="text-gray-600">Full ordering cart, payment integration, and real-time pickup availability.</p>
+        <p class="mt-4 text-sm text-gray-500">Interested? <a href="mailto:info@example.com" class="text-red-600 hover:underline">Contact us</a> for catering pre-orders.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900 text-white py-12" aria-labelledby="footer-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/index.html" class="font-bold text-2xl text-white flex items-center mb-4" aria-label="Darwin Pork Roll Home">
+          <span class="text-yellow-500 mr-1">Darwin</span> Pork Roll
+        </a>
+        <p class="text-gray-400 max-w-xs">Fresh, fast, and tasty Vietnamese food for the Coolalinga community.</p>
+      </div>
+      <nav aria-label="Footer links">
+        <h4 class="text-lg font-semibold mb-4 text-yellow-500">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="/index.html#home" class="footer-link">Home</a></li>
+          <li><a href="/index.html#menu" class="footer-link">Menu</a></li>
+          <li><a href="/index.html#about" class="footer-link">About Us</a></li>
+          <li><a href="/index.html#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4 class="text-lg font-semibold mb-4 text-yellow-500">Connect With Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="social-link" aria-label="Facebook"><i data-lucide="facebook" class="w-6 h-6" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i data-lucide="instagram" class="w-6 h-6" aria-hidden="true"></i></a>
+        </div>
+        <p class="mt-6 text-sm text-gray-500">&copy; <span id="year"></span> Darwin Pork Roll. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

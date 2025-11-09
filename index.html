@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darwin Pork Roll - Fresh, Fast, Tasty Vietnamese Food</title>
+    <meta name="description" content="Authentic Vietnamese Banh Mi, Pho, and Rice Dishes in Coolalinga. Order online for quick pickup!" />
+    <meta name="author" content="Darwin Pork Roll" />
+    <meta name="theme-color" content="#facc15" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Darwin Pork Roll" />
+    <meta property="og:description" content="Fresh, Fast, Tasty Vietnamese Food in Coolalinga" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://darwinporkroll.github.io/" />
+    <meta property="og:image" content="https://placehold.co/1200x630/e2e8f0/1e293b?text=Darwin+Pork+Roll" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Darwin Pork Roll" />
+    <meta name="twitter:description" content="Authentic Vietnamese eats: Banh Mi, Pho & more." />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind CDN fallback; local build recommended for production -->
+    <script src="https://cdn.tailwindcss.com" crossorigin></script>
+    <link rel="preload" href="/assets/css/main.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="/assets/js/main.js"></script>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Darwin Pork Roll",
+      "image": "https://placehold.co/800x600/e2e8f0/1e293b?text=Delicious+Banh+Mi",
+      "address": {"@type": "PostalAddress","streetAddress": "Shop T56, 425 Stuart Hwy","addressLocality": "Coolalinga","addressRegion": "NT","postalCode": "0839","addressCountry": "AU"},
+      "telephone": "+61-473-027-083",
+      "servesCuisine": ["Vietnamese","Banh Mi","Pho"],
+      "url": "https://darwinporkroll.github.io/",
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday"],"opens": "07:00","closes": "17:00"},
+        {"@type": "OpeningHoursSpecification","dayOfWeek": ["Thursday"],"opens": "07:00","closes": "19:00"},
+        {"@type": "OpeningHoursSpecification","dayOfWeek": ["Friday","Saturday"],"opens": "07:00","closes": "17:00"},
+        {"@type": "OpeningHoursSpecification","dayOfWeek": ["Sunday"],"opens": "07:00","closes": "15:00"}
+      ]
+    }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-inter">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="main-nav" aria-label="Primary navigation">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="font-bold text-xl text-gray-900 flex items-center" aria-label="Darwin Pork Roll Home">
+                        <span class="text-yellow-500 mr-1">Darwin</span> Pork Roll
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#menu" class="nav-link">Menu</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#contact" class="nav-link">Find Us</a>
+                    <a href="/order.html" class="btn-primary flex items-center" aria-label="Order Online">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 mr-2" aria-hidden="true"></i>
+                        Order Online
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="icon-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden" aria-hidden="true">
+            <a href="#menu" class="mobile-link">Menu</a>
+            <a href="#about" class="mobile-link">About Us</a>
+            <a href="#contact" class="mobile-link">Find Us</a>
+            <a href="/order.html" class="mobile-order">
+                <i data-lucide="shopping-bag" class="w-5 h-5 mr-2" aria-hidden="true"></i>
+                Order Online
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-12 md:pt-32 md:pb-24 hero-pattern" aria-labelledby="hero-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
+                <div class="flex-1 text-center md:text-left space-y-6">
+                    <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                        Authentic Vietnamese<br class="hidden md:block" />
+                        <span class="text-yellow-500">Fresh, Fast, Tasty</span>
+                    </h1>
+                    <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                        Experience the vibrant flavors of Vietnam right here in Coolalinga. From crispy Banh Mi to steaming bowls of Pho, we serve up happiness daily.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                        <a href="/order.html" class="btn-primary-lg" aria-label="Order pickup now">Order Pickup Now</a>
+                        <a href="#menu" class="btn-outline-lg" aria-label="View full menu">View Full Menu</a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full max-w-md md:max-w-none">
+                    <figure class="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://placehold.co/800x600/e2e8f0/1e293b?text=Delicious+Banh+Mi" alt="Signature Crispy Roast Pork Banh Mi" class="absolute inset-0 w-full h-full object-cover" />
+                        <figcaption class="sr-only">Crispy roast pork banh mi sandwich on fresh baguette</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights Section -->
+    <section id="menu" class="py-16 md:py-24 bg-white" aria-labelledby="menu-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-eyebrow">Our Menu</h2>
+                <p id="menu-heading" class="section-title">Local Favorites</p>
+                <p class="section-subtitle">Handcrafted with fresh ingredients and traditional family recipes.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Menu Item 1 -->
+                <article class="menu-card group">
+                    <div class="menu-card-media">
+                        <img src="https://placehold.co/600x450/fef3c7/92400e?text=Banh+Mi" alt="Crispy Pork Banh Mi" class="menu-card-img" />
+                        <div class="menu-card-overlay"></div>
+                        <div class="menu-card-caption">
+                            <p class="font-bold text-lg">Crispy Pork Banh Mi</p>
+                            <p class="text-sm text-gray-200">Baguette with roast pork, pâté, mayo, cucumber, pickled carrots, coriander & chili.</p>
+                        </div>
+                    </div>
+                    <h3 class="menu-card-title">Banh Mi (Pork Rolls)</h3>
+                    <p class="menu-card-desc">Crispy baguette filled with savory meats and fresh herbs.</p>
+                </article>
+                <!-- Menu Item 2 -->
+                <article class="menu-card group">
+                    <div class="menu-card-media">
+                        <img src="https://placehold.co/600x450/fee2e2/991b1b?text=Pho" alt="Traditional Beef Pho" class="menu-card-img" />
+                        <div class="menu-card-overlay"></div>
+                        <div class="menu-card-caption">
+                            <p class="font-bold text-lg">Beef Noodle Soup (Pho)</p>
+                            <p class="text-sm text-gray-200">Aromatic beef broth simmered for hours, served with rice noodles and fresh herbs.</p>
+                        </div>
+                    </div>
+                    <h3 class="menu-card-title">Pho Noodle Soup</h3>
+                    <p class="menu-card-desc">Our famous 12-hour bone broth with tender rice noodles.</p>
+                </article>
+                <!-- Menu Item 3 -->
+                <article class="menu-card group">
+                    <div class="menu-card-media">
+                        <img src="https://placehold.co/600x450/ecfccb/3f6212?text=Rice+Dishes" alt="Grilled Pork Chop Rice" class="menu-card-img" />
+                        <div class="menu-card-overlay"></div>
+                        <div class="menu-card-caption">
+                            <p class="font-bold text-lg">Grilled Pork Chop Rice</p>
+                            <p class="text-sm text-gray-200">Broken rice with marinated grilled pork chop, fried egg, and fresh vegetables.</p>
+                        </div>
+                    </div>
+                    <h3 class="menu-card-title">Rice Dishes</h3>
+                    <p class="menu-card-desc">Flavorful grilled meats served with broken rice and salad.</p>
+                </article>
+                <!-- Menu Item 4 -->
+                <article class="menu-card group sm:hidden lg:block">
+                    <div class="menu-card-media">
+                        <img src="https://placehold.co/600x450/e0f2fe/075985?text=Cold+Drinks" alt="Vietnamese Iced Coffee" class="menu-card-img" />
+                        <div class="menu-card-overlay"></div>
+                        <div class="menu-card-caption">
+                            <p class="font-bold text-lg">Vietnamese Iced Coffee</p>
+                            <p class="text-sm text-gray-200">Strong, sweet, and refreshingly cold. The perfect pick-me-up.</p>
+                        </div>
+                    </div>
+                    <h3 class="menu-card-title">Drinks</h3>
+                    <p class="menu-card-desc">Traditional Vietnamese iced coffee and refreshing beverages.</p>
+                </article>
+            </div>
+            <div class="mt-16 text-center">
+                <a href="/order.html" class="btn-outline-red" aria-label="See full menu">
+                    See Our Full Menu
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 md:py-24 bg-yellow-50" aria-labelledby="about-heading">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 id="about-heading" class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8">Our Story</h2>
+            <div class="prose prose-lg mx-auto text-gray-600">
+                <p>At <strong>Darwin Pork Roll</strong>, we believe in three simple things: <strong>Fresh</strong> ingredients, <strong>Fast</strong> service, and <strong>Tasty</strong> food that warms the soul.</p>
+                <p>Located in the heart of Coolalinga, we are a family-owned business passionate about sharing the authentic flavors of Vietnam with our community. Every baguette is baked fresh daily, our broths are simmered slowly for maximum flavor, and our meats are marinated with traditional family recipes.</p>
+                <p>Whether you're grabbing a quick lunch on your break or picking up a hearty dinner for the family, we're here to serve you with a smile. Come taste the difference that passion makes!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white" aria-labelledby="contact-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 id="contact-heading" class="text-3xl font-extrabold text-gray-900 mb-6">Visit Us</h2>
+                        <p class="text-lg text-gray-600 mb-8">We're conveniently located in Coolalinga. Drop by for a fresh meal or order ahead for a quick pickup.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="icon-wrapper"><i data-lucide="map-pin" class="w-6 h-6" aria-hidden="true"></i></div>
+                                <div class="ml-4">
+                                    <h3 class="contact-title">Location</h3>
+                                    <p class="contact-text">Shop T56, 425 Stuart Hwy<br />Coolalinga NT 0839</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="icon-wrapper"><i data-lucide="clock" class="w-6 h-6" aria-hidden="true"></i></div>
+                                <div class="ml-4">
+                                    <h3 class="contact-title">Trading Hours</h3>
+                                    <div class="mt-1 text-gray-600 grid grid-cols-2 gap-x-4 text-sm" aria-label="Trading hours">
+                                        <div>Mon - Wed:</div><div>07:00 AM - 05:00 PM</div>
+                                        <div>Thursday:</div><div>07:00 AM - 07:00 PM</div>
+                                        <div>Friday:</div><div>07:00 AM - 05:00 PM</div>
+                                        <div>Saturday:</div><div>07:00 AM - 05:00 PM</div>
+                                        <div>Sunday:</div><div>07:00 AM - 03:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="icon-wrapper"><i data-lucide="phone" class="w-6 h-6" aria-hidden="true"></i></div>
+                                <div class="ml-4">
+                                    <h3 class="contact-title">Call Us</h3>
+                                    <p class="contact-text"><a href="tel:0473027083" class="hover:text-yellow-600 transition-colors">0473 027 083</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map -->
+                <div class="h-96 bg-gray-200 rounded-2xl overflow-hidden shadow-lg" aria-label="Location map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.499899888162!2d131.0278993!3d-12.5167997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2cc091c37870971d%3A0x1d026c4432451640!2sCoolalinga%20Central!5e0!3m2!1sen!2sau!4v1696900000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Map of Darwin Pork Roll Location"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12" aria-labelledby="footer-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <a href="#home" class="font-bold text-2xl text-white flex items-center mb-4" aria-label="Darwin Pork Roll Home">
+                    <span class="text-yellow-500 mr-1">Darwin</span> Pork Roll
+                </a>
+                <p class="text-gray-400 max-w-xs">Fresh, fast, and tasty Vietnamese food for the Coolalinga community.</p>
+            </div>
+            <nav aria-label="Footer links">
+                <h4 class="text-lg font-semibold mb-4 text-yellow-500">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="footer-link">Home</a></li>
+                    <li><a href="#menu" class="footer-link">Menu</a></li>
+                    <li><a href="#about" class="footer-link">About Us</a></li>
+                    <li><a href="#contact" class="footer-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h4 class="text-lg font-semibold mb-4 text-yellow-500">Connect With Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="social-link" aria-label="Facebook"><i data-lucide="facebook" class="w-6 h-6" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i data-lucide="instagram" class="w-6 h-6" aria-hidden="true"></i></a>
+                </div>
+                <p class="mt-6 text-sm text-gray-500">&copy; <span id="year"></span> Darwin Pork Roll. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

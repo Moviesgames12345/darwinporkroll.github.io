@@ -1,0 +1,17 @@
+{
+  "name": "darwinporkroll-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Darwin Pork Roll static marketing site",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.build.css --watch",
+    "build": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.build.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.19",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/forms": "^0.5.7"
+  }
+}
