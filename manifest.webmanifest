@@ -1,11 +1,11 @@
 {
   "name": "Darwin Pork Roll",
   "short_name": "DPR",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#facc15",
   "background_color": "#ffffff",
   "icons": [
-    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }
