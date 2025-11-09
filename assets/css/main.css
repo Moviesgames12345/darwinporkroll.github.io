@@ -17,6 +17,20 @@ section[id] { scroll-margin-top: 6rem; }
   background-position: 0 0, 10px 10px;
 }
 
+/* Mobile hero: full-bleed background image with soft overlay */
+.hero-mobile { position: relative; }
+.hero-mobile { background-image: url('../img/v5.jpg'); background-size: cover; background-position: center; }
+.hero-mobile::before { content:""; position:absolute; inset:0; background:linear-gradient(135deg, rgba(17,24,39,.65), rgba(2,6,23,.35)); }
+.hero-mobile .content-rel { position:relative; z-index:1; }
+.hero-mobile .hero-text, .hero-mobile .hero-text h1, .hero-mobile .hero-text p { color:#F9FAFB !important; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+.hero-mobile .hero-figure { display:none; }
+@media (min-width:768px){
+  .hero-mobile { background-image:none; }
+  .hero-mobile::before { display:none; }
+  .hero-mobile .hero-text, .hero-mobile .hero-text h1, .hero-mobile .hero-text p { color:inherit !important; text-shadow:none; }
+  .hero-mobile .hero-figure { display:block; }
+}
+
 /* Utility classes extracted from index for clarity */
 .nav-link { color:#4b5563; font-weight:500; transition:color .2s; }
 .nav-link:hover { color:#ca8a04; }
@@ -47,6 +61,8 @@ section[id] { scroll-margin-top: 6rem; }
 .menu-card-desc { margin-top:.25rem; color:#4b5563; font-size:.95rem; }
 .btn-primary-lg { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 2.5rem; font-size:1rem; font-weight:600; color:#fff; background:#dc2626; border-radius:9999px; box-shadow:0 4px 14px rgba(0,0,0,.25); transition:background .2s, transform .2s, box-shadow .2s; }
 .btn-primary-lg:hover { background:#b91c1c; transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.3); }
+.fade-up { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.fade-up.appear { opacity:1; transform:translateY(0); }
 .btn-outline-lg { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 2.5rem; font-size:1rem; font-weight:600; color:#111827; background:transparent; border:2px solid #111827; border-radius:9999px; transition:background .2s, color .2s; }
 .btn-outline-lg:hover { background:#111827; color:#fff; }
 .btn-outline-red { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 2.5rem; font-size:1rem; font-weight:600; color:#dc2626; background:transparent; border:2px solid #dc2626; border-radius:9999px; transition:background .2s, color .2s; }

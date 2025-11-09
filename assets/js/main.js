@@ -33,5 +33,17 @@
     function onScroll(){ if (!nav) return; if (window.scrollY > 50) nav.classList.add('shadow-md'); else nav.classList.remove('shadow-md'); }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Simple fade-up reveal for hero text on first paint
+    try {
+      var hero = document.getElementById('home');
+      if (hero) {
+        var textBlock = hero.querySelector('.hero-text');
+        if (textBlock) {
+          textBlock.classList.add('fade-up');
+          requestAnimationFrame(function(){ textBlock.classList.add('appear'); });
+        }
+      }
+    } catch(e){}
   });
 })();
